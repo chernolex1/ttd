@@ -1,20 +1,15 @@
 #pragma once
 
-#include <vector>
-
-#include "tiles.h"
+#include "screens.h"
 
 class TGameState {
 public:
     TGameState();
     TGameState(const uint64_t mapSize);
 
-    const std::vector<std::vector<std::shared_ptr<TTile>>> GetMap() const { return Map; }
+    void Draw() const;
+    void ProcessInput(const char input);
 
-public:
-    uint64_t VerticalOffset = 0;
-    uint64_t HorizontalOffset = 0;
-
-public:
-    std::vector<std::vector<std::shared_ptr<TTile>>> Map;
+private:
+    std::shared_ptr<TScreen> CurrentScreen;
 };

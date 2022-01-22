@@ -2,85 +2,102 @@
 
 #include <string>
 
+#include "colors.h"
+
 class TTile {
 public:
     TTile() = default;
     virtual const std::string GetIcon() const {
         return "*";
     }
+
+    virtual const TColorsHandler::TypeColors GetColor() {
+        return TColorsHandler::TypeColors::EMPTY;
+    }
+
+    virtual bool IsBuildable() const {
+        return true;
+    }
 };
 
-class TVerticalRoad : public TTile {
+class TRailTile : public TTile {
+public:
+    virtual const TColorsHandler::TypeColors GetColor() {
+        return TColorsHandler::TypeColors::RAIL;
+    }
+};
+
+class TVerticalRoad : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "┃";
     }
 };
 
-class THorizontalRoad : public TTile {
+class THorizontalRoad : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "━";
     }
 };
 
-class TLeftJoint : public TTile {
+class TLeftJoint : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "┫";
     }
 };
 
-class TRightJoint : public TTile {
+class TRightJoint : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "┣";
     }
 };
 
-class TBottomJoint : public TTile {
+class TBottomJoint : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "┳";
     }
 };
 
-class TUpperJoint : public TTile {
+class TUpperJoint : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "┻";
     }
 };
 
-class TLeftUpCorner : public TTile {
+class TLeftUpCorner : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "┛";
     }
 };
 
-class TLeftDownCorner : public TTile {
+class TLeftDownCorner : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "┓";
     }
 };
 
-class TRightUpCorner : public TTile {
+class TRightUpCorner : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "┗";
     }
 };
 
-class TRightDownCorner : public TTile {
+class TRightDownCorner : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "┏";
     }
 };
 
-class TCross : public TTile {
+class TCross : public TRailTile {
 public:
     const std::string GetIcon() const override {
         return "╋";

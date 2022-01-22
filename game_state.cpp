@@ -6,5 +6,23 @@ TGameState::TGameState() {
 }
 
 TGameState::TGameState(const uint64_t mapSize) {
-    Map = std::vector<std::vector<std::shared_ptr<TTile>>>(mapSize, std::vector<std::shared_ptr<TTile>>(mapSize, std::make_shared<TTile>(TTile())));
+    TGameMap::Initialize(mapSize);
+    TGameMap& gameMap = TGameMap::GetInstance();
+    CurrentScreen = std::make_shared<TMapScreen>(
+        TMapScreen(
+            std::make_shared<TMapScreen::TMapScreenParams>(
+                TMapScreen::TMapScreenParams(
+                    TScreen::TScreenParams()
+                )
+            )
+        )
+    );
+}
+
+void TGameState::Draw() const {
+    CurrentScreen->Draw(TConsoleHelper::GetConsoleMeta());
+}
+
+void TGameState::ProcessInput(const char input) {
+    CurrentScreen->ProcessInput(input);
 }
