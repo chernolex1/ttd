@@ -1,3 +1,2 @@
 # ttd
-Compile- cmake . && make
-Run - ./main
+cmake . && make && ./main
